@@ -1,4 +1,4 @@
-#i3config
+#i3wm Configuration
 
 **Click the below image to see a preview of the i3bar:**
 
