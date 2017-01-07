@@ -1,7 +1,10 @@
 #i3config
 
+**Click the below image to see a preview of the i3bar:**
+
 ![Alt text](https://raw.githubusercontent.com/zimmertr/i3config/master/bar.png "i3bar.")
 
+##Summary
 This is a collection of the dotfiles required to use my personal integration of i3wm. Be sure to drop all included scripts in the `scripts` folder into `/usr/lib/i3blocks/`
 
 I have defined thresholds for all values. And when these values are surpassed, the respective block will show a red background to indicate that it is in an unhealthy state. 
@@ -9,8 +12,7 @@ I have defined thresholds for all values. And when these values are surpassed, t
 
 ![Alt text](https://raw.githubusercontent.com/zimmertr/i3config/master/desktop.png "Desktop image.")
 
-##Using i3blocks, I monitor the following metrics:
-
+##Monitored Metrics
 - Computer Volume
 
 - OS Package Updates
@@ -34,8 +36,7 @@ I have defined thresholds for all values. And when these values are surpassed, t
 - Disk Usage (Read/Write)
 
 
-##Requirements
-
+##Required Packages
 - i3wm
 - i3blocks
 - dmenu
