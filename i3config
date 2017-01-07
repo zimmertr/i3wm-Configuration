@@ -1,0 +1,215 @@
+########################################
+##########SYSTEM CONFIGURATION##########
+########################################
+# Set Mod Key
+set $mod Mod4
+
+# Add search domain to resolv.conf
+exec --no-startup-id /home/tj/Scripts/searchdomain.sh
+
+# By switching to a workspace by using mod+# you can then use the same 
+# mod + # to switch back to your original workspace.
+workspace_auto_back_and_forth yes
+
+# Reload Configuration
+bindsym $mod+Shift+r restart
+
+# Exit i3WM
+bindsym $mod+Shift+e exec --no-startup-id "i3-nagbar -t warning -m 'Do you really want to exit i3?' -b 'Yes' 'i3-msg exit'"
+
+# Window Title/Bar font
+font pango:monospace 9
+
+# Unicode and Retina Specific Fonts
+#font pango:Cousine, FontAwesome 9
+
+# Start dmenu 
+bindsym $mod+Menu exec --no-startup-id i3-dmenu-desktop
+
+# Start i3Bar
+bar {
+        height 20
+        i3bar_command i3bar -t
+        position bottom
+        tray_output none
+	status_command i3blocks
+ colors {
+        background #1e1e1e
+        statusline #ffffff
+        separator  #1e1e1e
+
+        # Type             border  background font
+        focused_workspace  #1e1e1e #1e1e1e #cf6a4c
+        active_workspace   #1e1e1e #222222 #cf6a4c
+        inactive_workspace #1e1e1e #1e1e1e #888888
+        urgent_workspace   #aa0000 #990000 #ffffff
+ }
+}
+
+# Workspace Order
+workspace "1" output DVI-I-0
+workspace "2" output DVI-D-0
+workspace "3" output HDMI-0
+
+# Background Image
+exec --no-startup-id feh --randomize --recursive --bg-fill --no-startup-id "/media/Data/Dropbox/Miscellaneous/Wallpapers/"
+
+# Window Gaps
+for_window [class="^.*"] border pixel 0
+gaps inner 10
+gaps outer 1
+#smart_gaps on
+smart_borders on
+
+# Volume Controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume alsa_output.pci-0000_00_1b.0.analog-stereo +5% && pactl set-sink-mute alsa_output.pci-0000_00_1b.0.analog-stereo 0
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume alsa_output.pci-0000_00_1b.0.analog-stereo -5%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute alsa_output.pci-0000_00_1b.0.analog-stereo toggle
+bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
+bindsym XF86AudioNext exec --no-startup-id playerctl next
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous
+
+# Take a Screenshot
+bindsym Print exec --no-startup-id scrot -e 'mv $f ~/Screenshots/'
+
+# Power Options
+bindsym $mod+Pause exec --no-startup-id systemctl suspend
+########################################
+########################################
+
+
+
+
+########################################
+#############WINDOW MODIFIERS###########
+########################################
+# Drag Window
+floating_modifier $mod
+
+# Quit Window
+bindsym $mod+Shift+q kill
+
+# Fullscreen
+bindsym $mod+f fullscreen toggle
+
+# Window Layout Format
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# Change Focus
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Move Focus
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Resize Focused Window
+bindsym $mod+Alt_L mode "resize"
+mode "resize" {
+        #same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+Ctrl+Right resize shrink width 10 px or 10 ppt
+bindsym $mod+Ctrl+Up resize grow height 10 px or 10 ppt
+bindsym $mod+Ctrl+Down resize shrink height 10 px or 10 ppt
+bindsym $mod+Ctrl+Left resize grow width 10 px or 10 ppt
+########################################
+########################################
+
+
+
+
+########################################
+############WORKSPACE MODIFIERS#########
+########################################
+# switch to workspace
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+########################################
+########################################
+
+
+
+
+########################################
+###########CONTAINER MODIFIERS##########
+########################################
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+########################################
+########################################
+
+
+
+
+########################################
+##########APPLICATION MODIFIERS#########
+########################################
+#Terminator - Macro S1
+bindsym $mod+F1 exec --no-startup-id terminator
+
+#Google Chrome - Macro S2
+bindsym $mod+F2 exec --no-startup-id google-chrome-stable
+
+#Spotify - Macro S3
+bindsym $mod+F3 exec --no-startup-id spotify
+
+#Sublime - Macro S4
+bindsym $mod+F4 exec --no-startup-id subl
+
+#Nemo - Macro S5
+bindsym $mod+F5 exec --no-startup-id nemo --no-desktop
+
+#Plex - Macro S6
+bindsym $mod+F6 exec --no-startup-id google-chrome-stable https://janus.sol.milkyway:32400/web/index.html
+########################################
+########################################
