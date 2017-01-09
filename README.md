@@ -14,31 +14,24 @@ The text color for each of the blocks is intended to mimic a rainbow in the ROYG
 ![Alt text](https://raw.githubusercontent.com/zimmertr/i3wm-Configuration/master/desktop.png "Desktop image.")
 
 ##Monitored Metrics
+```
 - Computer Volume
-
 - OS Package Updates
-
 - Computer Uptime
-
 - Computer Temperature
-
 - Outside Temperature
-
 - Day, Date, and Time
-
 - CPU Usage
-
 - Memory Usage
-
 - Computer Load
-
 - Network Usage (Up/Down)
-
 - Disk Usage (Read/Write)
-
+```
 
 ##Required Packages
+```
 - i3wm
 - i3blocks
 - dmenu
 - weather-report
+```
