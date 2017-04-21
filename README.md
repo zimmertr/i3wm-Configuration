@@ -18,6 +18,7 @@ The text color for each of the blocks is intended to mimic a rainbow in the ROYG
 - Computer Volume
 - OS Package Updates
 - Computer Uptime
+- Battery Level (Plus charging state indicator)
 - Computer Temperature
 - Outside Temperature
 - Day, Date, and Time
