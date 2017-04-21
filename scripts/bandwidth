@@ -108,12 +108,12 @@ else
   echo -n "${tx_kib}K"
 fi
 
-if [[ $rx_kib -gt 3072 ]]; then
+if [[ $rx_kib -gt 2048 ]]; then
     print "#FF0000\n"
     exit 33
 fi
 
-if [[ $tx_kib -gt 300 ]]; then
+if [[ $tx_kib -gt 2048 ]]; then
     print "#FF0000\n"
     exit 33
 fi
