@@ -23,9 +23,10 @@ The text color for each of the blocks is intended to mimic a rainbow in the ROYG
 - Day, Date, and Time
 - CPU Usage
 - Memory Usage
-- Computer Load
 - Network Usage (Up/Down)
-- Disk Usage (Read/Write)
+- Computer Load
+- Disk I/O
+- Current Graphics Adapter
 ```
 
 ## Required Packages
@@ -33,5 +34,6 @@ The text color for each of the blocks is intended to mimic a rainbow in the ROYG
 - i3wm
 - i3blocks
 - dmenu
-- weather-report
+- weather-report (For outdoor weather)
+- Prime (For Graphics)
 ```
