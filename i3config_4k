@@ -35,7 +35,7 @@ bindsym $mod+F3 exec --no-startup-id spotify --force-device-scale-factor=1.5
 bindsym $mod+F4 exec --no-startup-id subl
 bindsym $mod+F5 exec --no-startup-id slack
 bindsym $mod+F6 exec --no-startup-id vmware
-
+bindsym $mod+F12 exec --no-startup-id "i3-nagbar -t warning -m 'Are you sure you want to switch your GPU?' -b 'Yes' '/bin/bash /usr/lib/i3blocks/change_gpu.sh'
 
 # Start i3Bar
 bar {
