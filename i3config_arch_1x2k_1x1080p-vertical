@@ -4,9 +4,6 @@
 # Set Mod Key
 set $mod Mod4
 
-# Add search domain to resolv.conf
-exec --no-startup-id /home/tj/Scripts/searchdomain.sh
-
 # By switching to a workspace by using mod+# you can then use the same 
 # mod + # to switch back to your original workspace.
 workspace_auto_back_and_forth yes
@@ -14,25 +11,33 @@ workspace_auto_back_and_forth yes
 # Reload Configuration
 bindsym $mod+Shift+r restart
 
+# Lock the screen
+bindsym $mod+l exec --no-startup-id "i3lock -c ffb347"
+
+# Start nm-applet
+exec --no-startup-id nm-applet
+
+# Start Corsair Keyboard Daemon
+exec --no-startup-id "ckb -b"
+
 # Exit i3WM
 bindsym $mod+Shift+e exec --no-startup-id "i3-nagbar -t warning -m 'Do you really want to exit i3?' -b 'Yes' 'i3-msg exit'"
 
 # Window Title/Bar font
-font pango:monospace 9
-
-# Unicode and Retina Specific Fonts
-#font pango:Cousine, FontAwesome 9
+font pango:monospace 12 
 
 # Start dmenu 
-bindsym $mod+Menu exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+Menu exec --no-startup-id dmenu_run
+bindsym $mod+space exec --no-startup-id dmenu_run
 
 # Start i3Bar
 bar {
-        height 20
+        height 30
         i3bar_command i3bar -t
         position bottom
-        tray_output none
+        tray_output DP-1
 	status_command i3blocks
+	output DP-1
  colors {
         background #1e1e1e
         statusline #ffffff
@@ -47,12 +52,12 @@ bar {
 }
 
 # Workspace Order
-workspace "1" output DVI-I-0
+workspace "1" output DP-1
 workspace "2" output DVI-D-0
-workspace "3" output HDMI-0
 
 # Background Image
-exec --no-startup-id feh --randomize --recursive --bg-fill --no-startup-id "/media/Data/Dropbox/Miscellaneous/Wallpapers/"
+#exec --no-startup-id feh --randomize --recursive --bg-fill --no-startup-id "/media/Data/Dropbox/Miscellaneous/Wallpapers/"
+exec --no-startup-id feh --bg-fill "/public/Jupiter.jpg"
 
 # Window Gaps
 for_window [class="^.*"] border pixel 0
@@ -101,7 +106,7 @@ bindsym $mod+e layout toggle split
 bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+#bindsym $mod+space focus mode_toggle
 
 # Change Focus
 bindsym $mod+Left focus left
@@ -198,7 +203,7 @@ bindsym $mod+a focus parent
 bindsym $mod+F1 exec --no-startup-id terminator
 
 #Google Chrome - Macro S2
-bindsym $mod+F2 exec --no-startup-id google-chrome-stable
+bindsym $mod+F2 exec --no-startup-id google-chrome-unstable
 
 #Spotify - Macro S3
 bindsym $mod+F3 exec --no-startup-id spotify
@@ -207,9 +212,14 @@ bindsym $mod+F3 exec --no-startup-id spotify
 bindsym $mod+F4 exec --no-startup-id subl
 
 #Nemo - Macro S5
-bindsym $mod+F5 exec --no-startup-id nemo --no-desktop
+bindsym $mod+F5 exec --no-startup-id thunderbird-earlybird
 
 #Plex - Macro S6
 bindsym $mod+F6 exec --no-startup-id google-chrome-stable https://janus.sol.milkyway:32400/web/index.html
+
+#Fix Internet - Macro S1-2
+bindsym $mod+F7 exec --no-startup-id /home/tj/Scripts/restart-network.sh
 ########################################
 ########################################
+exec --no-startup-id xrandr --output DVI-I-1 --auto --left-of DP-1 --rotate right --output DP-1 --pos 1080x126 --right-of DVI-I-1
+exec --no-startup-id compton
