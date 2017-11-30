@@ -1,76 +1,92 @@
-########################################
-##########SYSTEM CONFIGURATION##########
-########################################
-
-# Options
+# Global Options
 set $mod Mod4 
-font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-font pango:DejaVu Sans Mono 10
-font pango:DejaVu Sans Mono, Terminus Bold Semi-Condensed 11
-font pango:Terminus 25px
-bindsym $mod+Shift+r restart 
-workspace "1" output eDP1 
+font pango:Terminus 12px
+
+
+# Window Gaps
+for_window [class="^.*"] border pixel 0
+gaps inner 8
+gaps outer 3
+smart_gaps on
+new_window 1pixel
+
+
+# Workspaces Labels
+workspace "P" output eDP1 
+workspace "L" output DP1-2
+workspace "C" output DP1-3
+workspace "R" output DP2-1
 workspace_auto_back_and_forth yes 
-bindsym $mod+Shift+e exec --no-startup-id "i3-nagbar -t warning -m 'Do you really want to exit i3?' -b 'Yes' 'i3-msg exit'"
-bindsym $mod+Pause exec --no-startup-id systemctl suspend
 
 
-# Start applications
-bindsym $mod+l exec --no-startup-id gnome-screensaver-command -la
+# Map Custom Commands
+bindsym $mod+Shift+r restart 
+#bindsym $mod+l exec --no-startup-id gnome-screensaver-command -la
+bindsym $mod+l exec --no-startup-id xscreensaver-command --lock
 bindsym $mod+space exec --no-startup-id i3-dmenu-desktop
-#exec --no-startup-id feh --randomize --recursive --bg-fill "/home/tj/Pictures/Wallpapers/"
-exec --no-startup-id feh --bg-fill "/home/tj/Pictures/Mars.jpg"
+bindsym $mod+Shift+e exec --no-startup-id "i3-nagbar -t warning -m 'Do you really want to exit i3?' -b 'Yes' 'i3-msg exit'"
+bindsym $mod+F12 exec --no-startup-id gksudo /usr/lib/i3blocks/change_gpu.sh'
 
 
-# Start applets 
+# Start applications 
+exec --no-startup-id feh --bg-fill "/mnt/Data/Pictures/Mars.jpg"
 exec --no-startup-id nm-applet
 exec --no-startup-id volumeicon
-exec --no-startup-id fluxgui
+exec --no-startup-id compton
+exec --no-startup-id redshift-gtk
+exec --no-startup-id numlockx
+exec --no-startup-id dunst
+exec --no-startup-id xscreensaver
+exec --no-startup-id ckb -b;gksudo ckb-daemon
 
 
 # Define application hotkeys
 bindsym $mod+F1 exec --no-startup-id terminator
-bindsym $mod+F2 exec --no-startup-id google-chrome-stable
-bindsym $mod+F3 exec --no-startup-id spotify --force-device-scale-factor=1.5
-bindsym $mod+F4 exec --no-startup-id subl
+bindsym $mod+F2 exec --no-startup-id google-chrome-unstable
+bindsym $mod+F3 exec --no-startup-id spotify --force-device-scale-factor=.5 %U
+bindsym $mod+F4 exec --no-startup-id subl3
 bindsym $mod+F5 exec --no-startup-id slack
-bindsym $mod+F6 exec --no-startup-id vmware
-bindsym $mod+F12 exec --no-startup-id "i3-nagbar -t warning -m 'Are you sure you want to switch your GPU?' -b 'Yes' '/bin/bash /usr/lib/i3blocks/change_gpu.sh'
+bindsym $mod+F6 exec --no-startup-id rocketchat
+bindsym $mod+F7 exec --no-startup-id gksudo vmware
+bindysm $mod+F12 exec --no-startup-id gksudo change_gpu.sh 
+
 
 # Start i3Bar
 bar {
         position bottom
 	    status_command i3blocks
- colors {
-        background #1e1e1e
-        statusline #ffffff
-        separator  #1e1e1e
+        tray_output DP-1-3
+        height 20
+       
+        colors {
+            background #1e1e1e
+            statusline #ffffff
+            separator  #1e1e1e
 
-        # Type             border  background font
-        focused_workspace  #1e1e1e #1e1e1e #cf6a4c
-        active_workspace   #1e1e1e #222222 #cf6a4c
-        inactive_workspace #1e1e1e #1e1e1e #888888
-        urgent_workspace   #aa0000 #990000 #ffffff
- }
+            # Type             border  background font
+            focused_workspace  #1e1e1e #1e1e1e #cf6a4c
+            active_workspace   #1e1e1e #222222 #cf6a4c
+            inactive_workspace #1e1e1e #1e1e1e #888888
+            urgent_workspace   #aa0000 #990000 #ffffff
+        }
 }
-
 
 
 # Volume Controls
 bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
 bindsym XF86AudioNext exec --no-startup-id playerctl next
 bindsym XF86AudioPrev exec --no-startup-id playerctl previous
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% && pactl set-sink-mute alsa_output.pci-0000_00_1f.3.analog-stereo false
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
-bindsym XF86MonBrightnessUp exec xbacklight -inc 10
-bindsym XF86MonBrightnessDown exec xbacklight -dec 10
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% && pactl set-sink-volume 1 +5% && amixer -c 1 set Headphone unmute && amixer -c 1 set Master unmute && amixer -c 1 set Speaker unmute 
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% && pactl set-sink-volume 1 -5% 
+bindsym XF86AudioMute exec --no-startup-id amixer set Master toggle
 
 
+# Backlight Controls
+bindsym XF86MonBrightnessUp exec brightnessctl s +5%
+bindsym XF86MonBrightnessDown exec brightnessctl s 5%-
 
-########################################
-#############WINDOW MODIFIERS###########
-########################################
+
+# Window Modifiers
 # Drag Window
 floating_modifier $mod
 
@@ -117,24 +133,14 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 
+
 bindsym $mod+Ctrl+Right resize shrink width 10 px or 10 ppt
 bindsym $mod+Ctrl+Up resize grow height 10 px or 10 ppt
 bindsym $mod+Ctrl+Down resize shrink height 10 px or 10 ppt
 bindsym $mod+Ctrl+Left resize grow width 10 px or 10 ppt
 
-# Window Gaps
-for_window [class="^.*"] border pixel 0
-gap_size 15
-new_window 1pixel
-########################################
-########################################
 
-
-
-
-########################################
-############WORKSPACE MODIFIERS#########
-########################################
+#Workspace Modifiers
 # switch to workspace
 bindsym $mod+1 workspace 1
 bindsym $mod+2 workspace 2
@@ -158,15 +164,9 @@ bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
-########################################
-########################################
 
 
-
-
-########################################
-###########CONTAINER MODIFIERS##########
-########################################
+#Container Modifiers
 # split in horizontal orientation
 bindsym $mod+h split h
 
@@ -175,5 +175,3 @@ bindsym $mod+v split v
 
 # focus the parent container
 bindsym $mod+a focus parent
-########################################
-########################################
