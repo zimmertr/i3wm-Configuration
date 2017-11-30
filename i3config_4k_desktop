@@ -67,8 +67,8 @@ gaps outer 1
 smart_borders on
 
 # Volume Controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume alsa_output.pci-0000_00_1b.0.analog-stereo +5% && pactl set-sink-mute alsa_output.pci-0000_00_1b.0.analog-stereo 0
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume alsa_output.pci-0000_00_1b.0.analog-stereo -5%
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume alsa_output.pci-0000_01_00.1.hdmi-stereo-extra2 +5% && pactl set-sink-mute alsa_output.pci-0000_00_1b.0.analog-stereo 0
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume alsa_output.pci-0000_01_00.1.hdmi-stereo-extra2 -5% 
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute alsa_output.pci-0000_00_1b.0.analog-stereo toggle
 bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
 bindsym XF86AudioNext exec --no-startup-id playerctl next
