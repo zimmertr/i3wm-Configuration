@@ -24,7 +24,7 @@ exec --no-startup-id "ckb -b"
 bindsym $mod+Shift+e exec --no-startup-id "i3-nagbar -t warning -m 'Do you really want to exit i3?' -b 'Yes' 'i3-msg exit'"
 
 # Window Title/Bar font
-font pango:monospace 15 
+font pango:monospace 13 
 
 # Start dmenu 
 bindsym $mod+Menu exec --no-startup-id dmenu_run

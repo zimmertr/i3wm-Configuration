@@ -79,7 +79,7 @@ min_width=Temperature: 000C - OUT 000F0
 ######
 [time]
 command=date '+%A, %m/%d - %I:%M%p'
-separator_block_width=500
+separator_block_width=450
 color=#9ed670
 
 
@@ -165,7 +165,7 @@ full_text=|
 align=center
 color=#ffffff
 min_width=|
-separator_block_width=100
+separator_block_width=50
 
 #This separator is invisble. But you cannot insert a separator_block_width with no object after. Hence this empty blocklet.
 [separator]
