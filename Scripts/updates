@@ -1,0 +1,11 @@
+#!/bin/bash
+
+#num=$(/usr/lib/update-notifier/apt-check --human-readable | head -n 1 | awk '{print $1}')
+echo $(($(checkupdates | wc -l) + $(checkupdates-aur | wc -l)))
+
+echo $num
+
+if [[ "$num" -gt "49" ]];
+then
+    exit 33
+fi

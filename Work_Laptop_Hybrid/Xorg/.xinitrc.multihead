@@ -1,0 +1,11 @@
+cp /home/tj/.xinitrc{.multihead,}
+cp /home/tj/.config/i3/config{.multihead,}
+cp /home/tj/.i3blocks.conf{.multihead,}
+cp /home/tj/.Xresources{.multihead,}
+xrandr --setprovideroutputsource modesetting NVIDIA-0
+dbus-update-activation-environment --systemd DISPLAY
+eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+export SSH_AUTH_SOCK
+xrdb ~/.Xresources
+xrandr --output DP-1-2-1 --mode 1920x1080 --pos 3840x0 --rotate normal --dpi 96 --output DP-1-1-2 --mode 1920x1080 --pos 0x0 --rotate normal --dpi 96 --output DP-1-1-3 --primary --mode 1920x1080 --pos 1920x0 --rotate normal --dpi 96 --output eDP-1-1 --off
+exec i3
