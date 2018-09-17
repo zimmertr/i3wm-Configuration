@@ -73,7 +73,7 @@ exec --no-startup-id feh --bg-fill "/home/tj/Pictures/Jupiter.jpg"
 exec --no-startup-id nm-applet
 exec --no-startup-id compton
 exec --no-startup-id pasystray
-exec --no-startup-id redshift-gtk
+exec --no-startup-id redshift-gtk -l 47.6:-122.3
 exec --no-startup-id numlockx
 exec --no-startup-id "ckb -b"
 
