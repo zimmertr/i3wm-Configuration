@@ -1,0 +1,12 @@
+#!/bin/bash
+tempSum=$(sensors | grep Core | awk '{print $3}' | cut -c 2- | cut -c -2 | paste -sd+ | bc)
+cores=$(lscpu | grep Core\(s\) | awk '{print $4}')
+
+avgTemp=$(($tempSum / $cores))
+echo -n $avgTemp
+echo -n °C
+
+
+if [ "$avgTemp" -gt 85 ]; then
+    exit 33
+fi

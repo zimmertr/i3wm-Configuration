@@ -1,44 +1,31 @@
 ########################################
-##########SYSTEM CONFIGURATION##########
+##########i3 Settings######################
 ########################################
-# Set Mod Key
+font pango:monospace 13 
 set $mod Mod4
-
-# By switching to a workspace by using mod+# you can then use the same 
-# mod + # to switch back to your original workspace.
+floating_modifier $mod
 workspace_auto_back_and_forth yes
 
-# Reload Configuration
-bindsym $mod+Shift+r restart
 
-# Lock the screen
-bindsym $mod+l exec --no-startup-id "i3lock -c ffb347"
+########################################
+##########Gaps Settings####################
+########################################
+for_window [class="^.*"] border pixel 0
+gaps inner 10
+gaps outer 1
+smart_borders on
 
-# Start nm-applet
-exec --no-startup-id nm-applet
 
-# Start Corsair Keyboard Daemon
-exec --no-startup-id "ckb -b"
-
-# Exit i3WM
-bindsym $mod+Shift+e exec --no-startup-id "i3-nagbar -t warning -m 'Do you really want to exit i3?' -b 'Yes' 'i3-msg exit'"
-
-# Window Title/Bar font
-font pango:monospace 13 
-
-# Start dmenu 
-bindsym $mod+Menu exec --no-startup-id dmenu_run
-bindsym $mod+space exec --no-startup-id dmenu_run
-
-# Start i3Bar
+########################################
+##########Bar Settings#####################
+########################################
 bar {
-        height 30
-        i3bar_command i3bar -t
-        position bottom
-        tray_output DP-1
-	status_command i3blocks
-	output DP-1
- colors {
+    height 35
+    i3bar_command i3bar 
+    position bottom
+    status_command i3blocks
+
+    colors {
         background #1e1e1e
         statusline #ffffff
         separator  #1e1e1e
@@ -48,100 +35,119 @@ bar {
         active_workspace   #1e1e1e #222222 #cf6a4c
         inactive_workspace #1e1e1e #1e1e1e #888888
         urgent_workspace   #aa0000 #990000 #ffffff
- }
+    }
 }
 
-# Workspace Order
-workspace "1" output DP-1
-workspace "2" output DVI-D-0
 
-# Background Image
-#exec --no-startup-id feh --randomize --recursive --bg-fill --no-startup-id "/media/Data/Dropbox/Miscellaneous/Wallpapers/"
-exec --no-startup-id feh --bg-fill "/public/Jupiter.jpg"
+########################################
+##########Key Bindings#####################
+########################################
+# Reload Configuration
+bindsym $mod+Shift+r restart
 
-# Window Gaps
-for_window [class="^.*"] border pixel 0
-gaps inner 10
-gaps outer 1
-#smart_gaps on
-smart_borders on
+# Lauch menu
+bindsym $mod+space exec --no-startup-id dmenu_run
+
+# Lock the screen
+bindsym $mod+l exec --no-startup-id "i3lock -c ffb347 -f"
+
+# Exit i3WM
+bindsym $mod+Shift+e exec --no-startup-id "i3-nagbar -t warning -m 'Do you really want to exit i3?' -b 'Yes' 'i3-msg exit'"
+
+# Suspend & Lock
+bindsym $mod+Pause exec --no-startup-id i3lock -c ffb347 -f && systemctl suspend
 
 # Volume Controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume alsa_output.pci-0000_01_00.1.hdmi-stereo-extra2 +5% && pactl set-sink-mute alsa_output.pci-0000_00_1b.0.analog-stereo 0
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume alsa_output.pci-0000_01_00.1.hdmi-stereo-extra2 -5% 
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute alsa_output.pci-0000_00_1b.0.analog-stereo toggle
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume alsa_output.pci-0000_00_1f.3.analog-surround-51 +5% && pactl set-sink-mute alsa_output.pci-0000_00_1f.3.analog-surround-51 0
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume alsa_output.pci-0000_00_1f.3.analog-surround-51 -5%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute alsa_output.pci-0000_00_1f.3.analog-surround-51 toggle
 bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
 bindsym XF86AudioNext exec --no-startup-id playerctl next
 bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 
-# Take a Screenshot
-bindsym Print exec --no-startup-id scrot -e 'mv $f ~/Screenshots/'
-
-# Power Options
-bindsym $mod+Pause exec --no-startup-id systemctl suspend
-########################################
-########################################
-
-
-
 
 ########################################
-#############WINDOW MODIFIERS###########
+##########Launch Programs#################
 ########################################
-# Drag Window
-floating_modifier $mod
+exec --no-startup-id feh --bg-fill "/home/tj/Pictures/Jupiter.jpg"
+exec --no-startup-id nm-applet
+exec --no-startup-id compton
+exec --no-startup-id pasystray
+exec --no-startup-id redshift-gtk
+exec --no-startup-id numlockx
+exec --no-startup-id "ckb -b"
 
+
+########################################
+##########APPLICATION MODIFIERS#########
+########################################
+#Terminator - Macro S1
+bindsym $mod+F1 exec --no-startup-id terminator
+
+#Google Chrome - Macro S2
+bindsym $mod+F2 exec --no-startup-id google-chrome-beta
+
+#Spotify - Macro S3
+bindsym $mod+F3 exec --no-startup-id spotify
+
+#Sublime - Macro S4
+bindsym $mod+F4 exec --no-startup-id subl3
+
+#Nemo - Macro S5
+bindsym $mod+F5 exec --no-startup-id slack 
+
+#Plex - Macro S6
+bindsym $mod+F6 exec --no-startup-id discord-canary
+
+
+########################################
+#############Window Modifiers##############
+########################################
 # Quit Window
 bindsym $mod+Shift+q kill
 
-# Fullscreen
+# Toggle Fullscreen Window
 bindsym $mod+f fullscreen toggle
+
+# Toggle Floating Window
+bindsym $mod+Shift+space floating toggle
 
 # Window Layout Format
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
-# toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
-
-# change focus between tiling / floating windows
-#bindsym $mod+space focus mode_toggle
-
-# Change Focus
+# Change Window Focus
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
-# Move Focus
+# Move Window
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # Resize Focused Window
+bindsym $mod+Ctrl+Right resize shrink width 5 px or 5 ppt
+bindsym $mod+Ctrl+Up resize grow height 5 px or 5 ppt
+bindsym $mod+Ctrl+Down resize shrink height 5 px or 5 ppt
+bindsym $mod+Ctrl+Left resize grow width 5 px or 5 ppt
+
+# Enter Window Resize Mode
 bindsym $mod+Alt_L mode "resize"
 mode "resize" {
         #same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+        bindsym Left resize shrink width 1 px or 1 ppt
+        bindsym Down resize grow height 1 px or 1 ppt
+        bindsym Up resize shrink height 1 px or 1 ppt
+        bindsym Right resize grow width 1 px or 1 ppt
 
         # back to normal: Enter or Escape
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
-
-bindsym $mod+Ctrl+Right resize shrink width 10 px or 10 ppt
-bindsym $mod+Ctrl+Up resize grow height 10 px or 10 ppt
-bindsym $mod+Ctrl+Down resize shrink height 10 px or 10 ppt
-bindsym $mod+Ctrl+Left resize grow width 10 px or 10 ppt
-########################################
-########################################
-
-
 
 
 ########################################
@@ -170,10 +176,6 @@ bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
-########################################
-########################################
-
-
 
 
 ########################################
@@ -190,39 +192,3 @@ bindsym $mod+a focus parent
 
 # focus the child container
 #bindsym $mod+d focus child
-########################################
-########################################
-
-
-
-
-########################################
-##########APPLICATION MODIFIERS#########
-########################################
-#Terminator - Macro S1
-bindsym $mod+F1 exec --no-startup-id terminator
-
-#Google Chrome - Macro S2
-bindsym $mod+F2 exec --no-startup-id google-chrome-unstable
-
-#Spotify - Macro S3
-bindsym $mod+F3 exec --no-startup-id spotify
-
-#Sublime - Macro S4
-bindsym $mod+F4 exec --no-startup-id subl
-
-#Nemo - Macro S5
-bindsym $mod+F5 exec --no-startup-id slack 
-
-#Plex - Macro S6
-bindsym $mod+F6 exec --no-startup-id vmware
-
-#Fix Internet - Macro S1-2
-bindsym $mod+F7 exec --no-startup-id /home/tj/Scripts/restart-network.sh
-########################################
-########################################
-exec --no-startup-id xrandr --output DVI-I-1 --auto --left-of DP-1 --rotate right --output DP-1 --pos 1080x126 --right-of DVI-I-1
-exec --no-startup-id compton
-exec --no-startup-id pasystray
-exec --no-startup-id redshift-gtk
-exec --no-startup-id numlockx

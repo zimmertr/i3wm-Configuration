@@ -1,9 +1,10 @@
-########
-#Global#
-########
+#########
+##Global##
+#########
 command=/usr/lib/i3blocks/$BLOCK_NAME
 interval=1
 align=center
+
 
 [separator]
 full_text=|
@@ -27,25 +28,22 @@ align=center
 color=#ffffff
 min_width=|
 
-
-
 #########
-#PACKAGE#
-#UPDATES#
+#Updates##
 #########
 [updates]
 label=Updates:
 command=echo $(($(checkupdates-aur | wc -l)+$(checkupdates | wc -l))) 
 interval=60
 color=#ff8b9
-min_width=Updates: 000
+min_width=Updates: 0000
+
 
 [separator]
 full_text=|
 align=center
 color=#ffffff
 min_width=|
-
 
 ########
 #Uptime#
@@ -54,7 +52,7 @@ min_width=|
 label=Uptime:
 command=awk '{printf("%dD%2d:%.2d",($1/60/60/24),($1/60/60%24),($1/60%60),($1%60))}' /proc/uptime
 color=#DFBF55
-min_width=Uptime: 00D 0:00
+min_width=Uptime: 00D 00:00
 
 
 [separator]
@@ -63,16 +61,21 @@ align=center
 color=#ffffff
 min_width=|
 
-
 #############
-##Computer###
-#Temperature#
+#Temperature##
 #############
 [temperature]
 label=Temperature:
 color=#BECA62
-separator_block_width=700
-min_width=Temperature: 000C - OUT 000F0
+min_width=Temperature: 000°C
+
+
+[separator]
+full_text=|
+align=center
+color=#ffffff
+min_width=|
+separator_block_width=900
 
 ######
 #Date#
@@ -83,45 +86,48 @@ separator_block_width=450
 color=#9ed670
 
 
-###########
-#CPU USAGE#
-###########
+[separator]
+full_text=|
+align=center
+color=#ffffff
+min_width=|
+
+##########
+#CPU Usage#
+##########
 [cpu_usage]
 label=Processor:
 min_width=Processor: 000.00%
 color=#76c238 
 
+
 [separator]
 full_text=|
 align=center
 color=#ffffff
 min_width=|
 
-
-
-########
-#Memory#
-#USAGE##
-#########
+#############
+#Memory Usage#
+#############
 [memory]
 label=Memory:
-min_width=Memory: 000.00%
+min_width=Memory: 11.1G/11.1G (111%)
 color=#a8e6cf
+
 
 [separator]
 full_text=|
 align=center
 color=#ffffff
 min_width=|
-
-
 
 ######
 #Load#
 ######
 [load_average]
 label=Load:
-min_width=Load: 1.11
+min_width=Load: 11.11
 color=#ADC1D4
 
 
@@ -131,16 +137,15 @@ align=center
 color=#ffffff
 min_width=|
 
-
-
 #########
 #Network#
 #########
 [bandwidth]
 label=Network:
 color=#7D9AE2
-instance=enp4s0
-min_width=Network: 0.00M/0.00M
+instance=enp7s0
+min_width=Network: IN 1000.0K OUT 1000.0K
+
 
 [separator]
 full_text=|
@@ -148,25 +153,15 @@ align=center
 color=#ffffff
 min_width=|
 
-
-
-#########
+#######
 #Disk IO#
-#########
+#######
 [disk-io]
 label=DiskIO:
 interval=persist
 markup=pango
 color=#b19cd9
-min_width=DiskIO: 000.0M/000.0M
+min_width=DiskIO: 000.0 / 000.0 kB/s
 
-[separator]
-full_text=|
-align=center
-color=#ffffff
-min_width=|
-separator_block_width=50
-
-#This separator is invisble. But you cannot insert a separator_block_width with no object after. Hence this empty blocklet.
 [separator]
 full_text= 
