@@ -11,26 +11,26 @@ This repository will help you create a highly configured implementation of i3. T
 
 This implementation of i3 will show the following metrics on your i3bar. When a metric reaches what I personally consider a _critical_ state, the block will highlight red to inform the user. 
 
-1) Volume
-2) Package Updates (AR & AUR)
-3) System Uptime
-4) Average CPU Temperature
-5) Date & Time
-6) Average CPU Utilization
-7) Memory Usage, Max, and Percentage
-8) System Load
-9) Network RX & TX
-10) Disk Read and Write
+1. Volume
+2. Package Updates (AR & AUR)
+3. System Uptime
+4. Average CPU Temperature
+5. Date & Time
+6. Average CPU Utilization
+7. Memory Usage, Max, and Percentage
+8. System Load
+9. Network RX & TX
+10. Disk Read and Write
 
 ## Dependencies
 
-** Required: **
+**Required:**
 * [i3-gaps-next-git](https://aur.archlinux.org/packages/i3-gaps-next-git/)
 * [i3blocks-git](https://aur.archlinux.org/packages/i3blocks-git/)
 * [i3status-git](https://aur.archlinux.org/packages/i3status-git/)
 * [xorg-xinit](https://www.archlinux.org/packages/extra/x86_64/xorg-xinit/)
 
-** Recommended: **
+**Recommended:**
 * [checkupdates-aur](https://aur.archlinux.org/packages/checkupdates-aur/)
 * [compton](https://www.archlinux.org/packages/community/x86_64/compton/)
 * [dmenu](https://www.archlinux.org/packages/community/x86_64/dmenu/)
@@ -43,7 +43,7 @@ This implementation of i3 will show the following metrics on your i3bar. When a 
 * [numlockx](https://www.archlinux.org/packages/community/x86_64/numlockx/)
 * [redshift](https://www.archlinux.org/packages/community/x86_64/redshift/)
 
-** Optional: **
+**Optional:**
 
 * [discord-canary](https://aur.archlinux.org/packages/discord-canary/)
 * [google-chrome](https://aur.archlinux.org/packages/google-chrome/)
@@ -56,13 +56,13 @@ This implementation of i3 will show the following metrics on your i3bar. When a 
 
 ### Desktop Configuration
 
-1) `cp -r Scripts/* /usr/lib/i3blocks/`
-2) `cp Desktop/config /etc/i3/config`
-3) `cp Desktop/i3blocks.conf /etc/i3blocks.conf`
-4) `cp Desktop/xinitrc ~/.xinitrc`
-5) `cp Desktop/Xresources ~/.Xresources`
-6) `startx`
-7) Update `/etc/i3/config` and `/etc/i3blocks.conf` according to your configuration and desires.
+1. `cp -r Scripts/* /usr/lib/i3blocks/`
+2. `cp Desktop/config /etc/i3/config`
+3. `cp Desktop/i3blocks.conf /etc/i3blocks.conf`
+4. `cp Desktop/xinitrc ~/.xinitrc`
+5. `cp Desktop/Xresources ~/.Xresources`
+6. `startx`
+7. Update `/etc/i3/config` and `/etc/i3blocks.conf` according to your configuration and desires.
 
 ### Dockable Laptop Configuration
 
@@ -70,16 +70,16 @@ This implementation of i3 will show the following metrics on your i3bar. When a 
 
 Additional Dependency: [xorg-xrandr](https://www.archlinux.org/packages/?name=xorg-xrandr)
 
-1) `cp Laptop/Dockable/i3/config.{multihead,singlehead} ~/.config/i3/`
-2) `cp ~/.config/i3/config{.singlehead,}`
-3) `cp Laptop/Dockable/i3blocks/.i3blocks.conf.{multihead,singlehead} ~/`
-4) `cp ~/.i3blocks.conf{.singlehead,}`
-5) `cp Laptop/Dockable/Xorg/.xinitrc.{multihead,singlehead} ~/`
-6) `cp ~/.xinitrc{.singlehead,}`
-7) `cp Laptop/Dockable/Xorg/.Xresources.{multihead,singlehead} ~/`
-8) `cp ~/.Xresources{.singlehead,}`
-7) `cp Laptop/Dockable/Xorg/xorg.conf /etc/X11/xorg.conf`
-9) Create an alias in your Shell RC file for each of the following commands. 
+1. `cp Laptop/Dockable/i3/config.{multihead,singlehead} ~/.config/i3/`
+2. `cp ~/.config/i3/config{.singlehead,}`
+3. `cp Laptop/Dockable/i3blocks/.i3blocks.conf.{multihead,singlehead} ~/`
+4. `cp ~/.i3blocks.conf{.singlehead,}`
+5. `cp Laptop/Dockable/Xorg/.xinitrc.{multihead,singlehead} ~/`
+6. `cp ~/.xinitrc{.singlehead,}`
+7. `cp Laptop/Dockable/Xorg/.Xresources.{multihead,singlehead} ~/`
+8. `cp ~/.Xresources{.singlehead,}`
+7. `cp Laptop/Dockable/Xorg/xorg.conf /etc/X11/xorg.conf`
+9. Create an alias in your Shell RC file for each of the following commands. 
 ```
 multihead='startx /home/tj/.xinitrc.multihead'
 singlehead='startx /home/tj/.xinitrc.singlehead'
