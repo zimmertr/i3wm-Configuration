@@ -1,0 +1,173 @@
+# Global Options
+set $mod Mod4
+font pango:Terminus 25px
+
+# Window Gaps
+for_window [class="^.*"] border pixel 0
+gaps inner 8
+gaps outer 3
+smart_gaps on
+new_window 1pixel
+
+
+# Workspaces Labels
+workspace "0" output eDP-1-1
+workspace "1" output DP-1-1-2
+workspace "2" output DP-1-1-3
+workspace "3" output DP-1-2-1
+workspace_auto_back_and_forth yes
+
+
+# Map Custom Commands
+bindsym $mod+Shift+r restart
+bindsym $mod+l exec --no-startup-id "i3lock -c D68910 -e -f"
+bindsym $mod+Shift+l exec --no-startup-id "i3lock -c D68910 -e -f; xset dpms force off"
+bindsym $mod+space exec --no-startup-id "dmenu_run -fn 'Terminus-15'"
+bindsym $mod+Shift+e exec --no-startup-id "i3-nagbar -t warning -m 'Do you really want to exit i3?' -b 'Yes' 'i3-msg exit'"
+
+
+# Start applications
+exec --no-startup-id feh --bg-fill "/mnt/Data/Pictures/Mars.jpg"
+exec --no-startup-id nm-applet
+exec --no-startup-id volumeicon
+exec --no-startup-id compton
+exec --no-startup-id redshift-gtk
+exec --no-startup-id numlockx
+exec --no-startup-id dunst
+exec --no-startup-id "ckb-next -b -c"
+
+
+# Define application hotkeys
+bindsym $mod+F1 exec --no-startup-id terminator
+bindsym $mod+F2 exec --no-startup-id google-chrome-stable
+bindsym $mod+F3 exec --no-startup-id spotify --force-device-scale-factor=1.5 %U
+bindsym $mod+F4 exec --no-startup-id subl3
+bindsym $mod+F5 exec --no-startup-id slack
+bindsym $mod+F6 exec --no-startup-id discord-canary
+
+
+# Start i3Bar
+bar {
+        position bottom
+	    status_command i3blocks
+#        tray_output DP-1-1-3
+        tray_output eDP-1-1
+        height 40
+
+        colors {
+            background #1e1e1e
+            statusline #ffffff
+            separator  #1e1e1e
+
+            # Type             border  background font
+            focused_workspace  #1e1e1e #1e1e1e #cf6a4c
+            active_workspace   #1e1e1e #222222 #cf6a4c
+            inactive_workspace #1e1e1e #1e1e1e #888888
+            urgent_workspace   #aa0000 #990000 #ffffff
+        }
+}
+
+
+# Volume Controls
+bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
+bindsym XF86AudioNext exec --no-startup-id playerctl next
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume alsa_output.pci-0000_00_1f.3.analog-stereo +5% && pactl set-sink-volume 0 +5% && pactl set-sink-volume 1 +5% && amixer -c 1 set Headphone unmute && amixer -c 1 set Master unmute && amixer -c 1 set Speaker unmute
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume alsa_output.pci-0000_00_1f.3.analog-stereo -5% && pactl set-sink-volume 0 -5% && pactl set-sink-volume 1 -5% 
+bindsym XF86AudioMute exec --no-startup-id amixer set Master toggle
+
+
+# Backlight Controls
+bindsym XF86MonBrightnessUp exec brightnessctl s +5%
+bindsym XF86MonBrightnessDown exec brightnessctl s 5%-
+
+
+# Window Modifiers
+# Drag Window
+floating_modifier $mod
+
+# Quit Window
+bindsym $mod+Shift+q kill
+
+# Fullscreen
+bindsym $mod+f fullscreen toggle
+
+# Window Layout Format
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+#bindsym $mod+space focus mode_toggle
+
+# Change Focus
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Move Focus
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Resize Focused Window
+bindsym $mod+Alt_L mode "resize"
+mode "resize" {
+        #same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 12px or 10 ppt
+        bindsym Down resize grow height 10 12px or 10 ppt
+        bindsym Up resize shrink height 10 12px or 10 ppt
+        bindsym Right resize grow width 10 12px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+
+bindsym $mod+Ctrl+Right resize shrink width 10
+bindsym $mod+Ctrl+Up resize grow height 10
+bindsym $mod+Ctrl+Down resize shrink height 10
+bindsym $mod+Ctrl+Left resize grow width 10
+
+
+#Workspace Modifiers
+# switch to workspace
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+
+#Container Modifiers
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# focus the parent container
+bindsym $mod+a focus parent

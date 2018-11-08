@@ -2,24 +2,83 @@
 
 **Click the below image to see a preview of the i3bar:**
 
-![Alt text](https://raw.githubusercontent.com/zimmertr/i3wm-Configuration/master/bar.png "i3bar.")
+![Alt text](https://raw.githubusercontent.com/zimmertr/i3wm-Configuration/master/bar.png "i3bar")
 
 
-## Foreword / New Instructions
+## Summary 
 
-I haven't really kept this repo up to date so most of the information below is still related in some regards but not really anymore. 
+This repository will help you create a highly configured implementation of i3. The idea is to recreate a typical Desktop Environment from scratch without all the bloat. To get started, install the dependencies below and follow the instructions according to your hardware configuration. `Desktop` contains configuration files for a Desktop configuration.  `Laptop` contains a subdirectory for a _Dockable_ and _Undocked_ implementation of my configuration.
 
-There are a few folders on the root of this repo, each one containg some random configs pertaining to my personal Desktop Environment throughout time. My most recent configuration is the one titled Work_Laptop_Hybrid. To use it, install `i3-gaps-next-git`, `i3blocks-git`, `i3status-git`, `nvidia`, `xorg-xrandr`, `xorg-xinit`, `xorg`, `xorg-server`, & `xorg-apps`. Also required are additional packages used for my DE such as: `network-manager-applet`, `redshift-gtk-git`, `playerctl`, `ckb-next`, `i3lock`, `volumeicon`, `compton`, `dunst`, `numlockx`, `sublime-text-dev`, `virtualbox`, `google-chrome-stable`, `spotify`, `slack`, `discord-canary`, & `terminator`. 
+This implementation of i3 will show the following metrics on your i3bar. When a metric reaches what I personally consider a _critical_ state, the block will highlight red to inform the user. 
 
-1) `cp ~/git/i3wm-Configuration/Work_Laptop_Hybrid/i3/config.{multihead,singlehead} ~/.config/i3/`
+1) Volume
+2) Package Updates (AR & AUR)
+3) System Uptime
+4) Average CPU Temperature
+5) Date & Time
+6) Average CPU Utilization
+7) Memory Usage, Max, and Percentage
+8) System Load
+9) Network RX & TX
+10) Disk Read and Write
+
+## Dependencies
+
+** Required: **
+* [i3-gaps-next-git](https://aur.archlinux.org/packages/i3-gaps-next-git/)
+* [i3blocks-git](https://aur.archlinux.org/packages/i3blocks-git/)
+* [i3status-git](https://aur.archlinux.org/packages/i3status-git/)
+* [xorg-xinit](https://www.archlinux.org/packages/extra/x86_64/xorg-xinit/)
+
+** Recommended: **
+* [checkupdates-aur](https://aur.archlinux.org/packages/checkupdates-aur/)
+* [compton](https://www.archlinux.org/packages/community/x86_64/compton/)
+* [dmenu](https://www.archlinux.org/packages/community/x86_64/dmenu/)
+* [dunst](https://www.archlinux.org/packages/community/x86_64/dunst/)
+* [feh](https://www.archlinux.org/packages/extra/x86_64/feh/)
+* [i3lock](https://www.archlinux.org/packages/community/x86_64/i3lock/)
+* [pasystray](https://www.archlinux.org/packages/community/x86_64/pasystray/)
+* [playerctl](https://www.archlinux.org/packages/community/x86_64/playerctl/)
+* [pulseaudio](https://www.archlinux.org/packages/extra/x86_64/pulseaudio/)
+* [numlockx](https://www.archlinux.org/packages/community/x86_64/numlockx/)
+* [redshift](https://www.archlinux.org/packages/community/x86_64/redshift/)
+
+** Optional: **
+
+* [discord-canary](https://aur.archlinux.org/packages/discord-canary/)
+* [google-chrome](https://aur.archlinux.org/packages/google-chrome/)
+* [spotify](https://aur.archlinux.org/packages/spotify/)
+* [sublime-text-dev](https://aur.archlinux.org/packages/sublime-text-dev/)
+* [slack-desktop](https://aur.archlinux.org/packages/slack-desktop/)
+* [terminator](https://www.archlinux.org/packages/community/any/terminator/)
+
+## Instructions
+
+### Desktop Configuration
+
+1) `cp -r Scripts/* /usr/lib/i3blocks/`
+2) `cp Desktop/config /etc/i3/config`
+3) `cp Desktop/i3blocks.conf /etc/i3blocks.conf`
+4) `cp Desktop/xinitrc ~/.xinitrc`
+5) `cp Desktop/Xresources ~/.Xresources`
+6) `startx`
+7) Update `/etc/i3/config` and `/etc/i3blocks.conf` according to your configuration and desires.
+
+### Dockable Laptop Configuration
+
+**Warning:** These files are probably out of date since I use a MacBook as a laptop now.
+
+Additional Dependency: [xorg-xrandr](https://www.archlinux.org/packages/?name=xorg-xrandr)
+
+1) `cp Laptop/Dockable/i3/config.{multihead,singlehead} ~/.config/i3/`
 2) `cp ~/.config/i3/config{.singlehead,}`
-3) `cp ~/git/i3wm-Configuration/Work_Laptop_Hybrid/i3blocks/.i3blocks.conf.{multihead,singlehead} ~/`
+3) `cp Laptop/Dockable/i3blocks/.i3blocks.conf.{multihead,singlehead} ~/`
 4) `cp ~/.i3blocks.conf{.singlehead,}`
-5) `cp ~/git/i3wm-Configuration/Work_Laptop_Hybrid/Xorg/.xinitrc.{multihead,singlehead} ~/`
+5) `cp Laptop/Dockable/Xorg/.xinitrc.{multihead,singlehead} ~/`
 6) `cp ~/.xinitrc{.singlehead,}`
-7) `cp ~/git/i3wm-Configuration/Work_Laptop_Hybrid/Xorg/.Xresources.{multihead,singlehead} ~/`
+7) `cp Laptop/Dockable/Xorg/.Xresources.{multihead,singlehead} ~/`
 8) `cp ~/.Xresources{.singlehead,}`
-7) `cp ~/git/i3wm-Configuration/Work_Laptop_Hybrid/Xorg/xorg.conf /etc/X11/xorg.conf`
+7) `cp Laptop/Dockable/Xorg/xorg.conf /etc/X11/xorg.conf`
 9) Create an alias in your Shell RC file for each of the following commands. 
 ```
 multihead='startx /home/tj/.xinitrc.multihead'
@@ -33,38 +92,8 @@ The `.xinitrc` file will copy the required configuration file over the configura
 When spawned, i3 will do the normal stuff but also spawn several applications into your tray for controlling things on your system like your network, volume, color shift, etc. 
 
 
+### Undocked Laptop Configuration
 
-## Summary / Old Instructions
-This is a collection of the dotfiles required to use my personal integration of i3wm. Be sure to drop all included scripts in the `scripts` folder into `/usr/lib/i3blocks/`
+**Warning:** These files are probably out of date since I use a MacBook as a laptop now.
 
-I have defined thresholds for all values. And when these values are surpassed, the respective block will show a red background to indicate that it is in an unhealthy state. 
-
-The text color for each of the blocks is intended to mimic a rainbow in the ROYGBIV style.
-
-![Alt text](https://raw.githubusercontent.com/zimmertr/i3wm-Configuration/master/desktop.png "Desktop image.")
-
-## Monitored Metrics
-```
-- Computer Volume
-- OS Package Updates
-- Computer Uptime
-- Battery Level (Plus charging state indicator)
-- Computer Temperature
-- Outside Temperature
-- Day, Date, and Time
-- CPU Usage
-- Memory Usage
-- Network Usage (Up/Down)
-- Computer Load
-- Disk I/O
-- Current Graphics Adapter
-```
-
-## Required Packages
-```
-- i3wm
-- i3blocks
-- dmenu
-- weather-report (For outdoor weather)
-- Prime (For Graphics)
-```
+I don't remember. Probably mostly the same as the Desktop Configuration above.
