@@ -10,7 +10,7 @@
 This repository will help you create a highly configured implementation of i3. The idea is to recreate a typical Desktop Environment from scratch without all the bloat. To get started, install the dependencies below and follow the instructions according to your hardware configuration. `Desktop` contains configuration files for a Desktop configuration.  `Laptop` contains a subdirectory for a _Dockable_ and _Undocked_ implementation of my configuration.
 
 This implementation of i3 will show the following metrics on your i3bar. When a metric reaches what I personally consider a _critical_ state, the block will highlight red to inform the user. 
-
+```
 1. Volume
 2. Package Updates (AR & AUR)
 3. System Uptime
@@ -21,7 +21,7 @@ This implementation of i3 will show the following metrics on your i3bar. When a 
 8. System Load
 9. Network RX & TX
 10. Disk Read and Write
-
+```
 ## Dependencies
 
 **Required:**
