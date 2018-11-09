@@ -37,6 +37,7 @@ This implementation of i3 will show the following metrics on your i3bar. When a 
 * [dunst](https://www.archlinux.org/packages/community/x86_64/dunst/)
 * [feh](https://www.archlinux.org/packages/extra/x86_64/feh/)
 * [i3lock](https://www.archlinux.org/packages/community/x86_64/i3lock/)
+* [pacman-contrib](https://www.archlinux.org/packages/community/x86_64/pacman-contrib/)
 * [pasystray](https://www.archlinux.org/packages/community/x86_64/pasystray/)
 * [playerctl](https://www.archlinux.org/packages/community/x86_64/playerctl/)
 * [pulseaudio](https://www.archlinux.org/packages/extra/x86_64/pulseaudio/)
