@@ -10,3 +10,5 @@ echo -n °C
 if [ "$avgTemp" -gt 85 ]; then
     exit 33
 fi
+echo
+
